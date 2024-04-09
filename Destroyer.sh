@@ -49,7 +49,7 @@ echo -e "		            ${B}The ultimate penetration tester tool ${NC} "
 	"0") nmap ; break ;;
 	"1") option2 ; break ;; 
 	"2") option3  ; break ;;
-	"*") exit 0 ; break ;;
+	"*") echo -e "${B}${LBLUE}thank you for using our tool!";exit 0 ; break;;
 	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
 
 	esac	
@@ -129,7 +129,7 @@ while true
 	echo ""
 		case $opt in
 	"0") SYN $ip ; clear ; nmap ; break ;;
-	"1") allPorts $ip ; clear ; nmap  ; break ;; 
+	"1") noPing $ip ; clear ; nmap  ; break ;; 
 	"2") evasion $ip ; clear ; nmap ; break ;;
 	"3") all $ip ; clear ; nmap ; break ;;
 	"*") ip="" ;clear ; banner ; menu ; break ;;

@@ -5,11 +5,11 @@ SYN()
 
 cd ./output
 
-gnome-terminal -- bash -c "sudo nmap -sC -sV -O $ip | tee $ip/SYN.txt ; echo ""; read -p 'Press Enter to close...'" 
+gnome-terminal -- bash -c "sudo nmap -sS -sV -O $ip | tee $ip/SYN.txt ; echo ""; read -p 'Press Enter to close...'" 
 
 }
 
-allPorts()
+noPing()
 {
 
 cd ./output
@@ -34,7 +34,7 @@ all()
 
 SYN $ip
 
-allPorts $ip
+noPing $ip
 
 evasion $ip
 
