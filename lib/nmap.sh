@@ -3,9 +3,18 @@
 SYN()
 {
 
-cd ./output
+xdotool key ctrl+shift+t;sleep 1
 
-gnome-terminal -- bash -c "sudo nmap -sS -sV -O $ip | tee $ip/SYN.txt ; echo ""; read -p 'Press Enter to close...'" 
+
+xdotool key alt+shift+s ; xdotool type "SynScan" ; xdotool key Return;sleep 1
+
+
+xdotool type "cd ./output" ; xdotool key Return ; xdotool key ctrl+l;sleep 1 
+
+
+xdotool type "sudo nmap -sS -sV -O $ip -oX $ip/SYN.xml" ; xdotool key Return
+
+xdotool type "$passwd" ; xdotool key Return
 
 }
 
