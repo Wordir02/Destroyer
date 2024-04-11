@@ -88,7 +88,9 @@ echo -e "${NC}"
 	echo -e "[${LBLUE}0${NC}${B}]${CYAN} SYN Scan"
        	echo -e "${NC}${B}[${LBLUE}1${NC}${B}]${CYAN} ACK Scan"
 	echo -e "${NC}${B}[${LBLUE}2${NC}${B}]${CYAN} TCP Scan"
-	echo -e "${NC}${B}[${LBLUE}3${NC}${B}]${CYAN} All"
+	echo -e "${NC}${B}[${LBLUE}3${NC}${B}]${CYAN} enable Pn"
+	echo -e "${NC}${B}[${LBLUE}4${NC}${B}]${CYAN} enable silent scan"
+	echo -e "${NC}${B}[${LBLUE}5${NC}${B}]${CYAN} Export results"
 	echo -e "${NC}${B}[${FAINTLRED}*${NC}${B}]${CYAN} back"	
 	echo ""
 	echo -e "${BOLDBLUE}"
@@ -104,7 +106,9 @@ while true
 	"0") SYN $ip ; clear ; nmap ; break ;;
 	"1") ACK $ip ; clear ; nmap  ; break ;; 
 	"2") TCP $ip ; clear ; nmap ; break ;;
-	"3") all $ip ; clear ; nmap ; break ;;
+	"3") enablePn $ip ; clear ; nmap ; break ;;
+	"4") silent $ip ; clear ; nmap ; break ;;
+	"5") export $ip ; clear ; nmap ; break ;;
 	"*") clear ; banner ; menu ; break ;;
 	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
 

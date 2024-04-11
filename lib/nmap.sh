@@ -12,7 +12,7 @@ SYN()
     xdotool type "cd ./output" ; xdotool key Return ; xdotool key ctrl+l;sleep 1 
 
 
-    xdotool type "sudo nmap -sS -sV -O $Pn $ip -oX $ip/SYN.xml" ; xdotool key Return
+    xdotool type "sudo nmap -sS -sV -O $Pn $silent $ip -oX $ip/SYN.xml" ; xdotool key Return
 
     xdotool type "$passwd" ; xdotool key Return
 
@@ -30,7 +30,7 @@ ACK()
     xdotool type "cd ./output" ; xdotool key Return ; xdotool key ctrl+l;sleep 1 
 
 
-    xdotool type "sudo nmap -sA -sV -O $ip -oX $ip/ACK.xml" ; xdotool key Return
+    xdotool type "sudo nmap -sA -sV -O $ip $silent -oX $ip/ACK.xml" ; xdotool key Return
 
     xdotool type "$passwd" ; xdotool key Return 
 }
@@ -54,14 +54,71 @@ TCP()
 
 }
 
-evasion()
+
+
+
+
+# function to enable Pn option in nmap
+enablePn()
 {
 
-cd ./output
+while true 
+	do
 
-gnome-terminal -- bash -c "sudo nmap -sF -sV $ip | tee $ip/FIN.txt ; echo ""; read -p 'Press Enter to close...'" 
+	echo -e "${BOLDBLUE}"	
+	read  -p "Enable Pn?(y/rm): " opt
+
+	echo ""
+		case $opt in
+	"y") Pn='-Pn'; break ;;
+	"rm") Pn='' ; break ;; 
+	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
+
+	esac	
+
+	done
 
 }
+
+
+
+silent()
+{
+
+while true 
+	do
+
+	echo -e "${BOLDBLUE}"	
+	read  -p "Enable silent flag?(y/rm): " opt
+
+	echo ""
+		case $opt in
+	"y") silent='-Pn -n --disable-arp-ping'; break ;;
+	"rm") silent='' ; break ;; 
+	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
+
+	esac	
+
+	done
+
+}
+
+
+
+export()
+{
+
+    cd ./output/$ip
+
+    for file in ./*
+    do
+        filename=$(basename "$file")
+        filename="${filename%.*}"
+        xsltproc "$file" -o "${filename}.html"
+    done
+
+}
+
 
 
 all()
