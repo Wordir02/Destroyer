@@ -86,8 +86,8 @@ insertPasswd
 echo -e "${NC}" 
        	echo "${B}" 
 	echo -e "[${LBLUE}0${NC}${B}]${CYAN} SYN Scan"
-       	echo -e "${NC}${B}[${LBLUE}1${NC}${B}]${CYAN} Pn Scan"
-	echo -e "${NC}${B}[${LBLUE}2${NC}${B}]${CYAN} Firewall Evasion"
+       	echo -e "${NC}${B}[${LBLUE}1${NC}${B}]${CYAN} ACK Scan"
+	echo -e "${NC}${B}[${LBLUE}2${NC}${B}]${CYAN} TCP Scan"
 	echo -e "${NC}${B}[${LBLUE}3${NC}${B}]${CYAN} All"
 	echo -e "${NC}${B}[${FAINTLRED}*${NC}${B}]${CYAN} back"	
 	echo ""
@@ -102,8 +102,8 @@ while true
 	echo ""
 		case $opt in
 	"0") SYN $ip ; clear ; nmap ; break ;;
-	"1") noPing $ip ; clear ; nmap  ; break ;; 
-	"2") evasion $ip ; clear ; nmap ; break ;;
+	"1") ACK $ip ; clear ; nmap  ; break ;; 
+	"2") TCP $ip ; clear ; nmap ; break ;;
 	"3") all $ip ; clear ; nmap ; break ;;
 	"*") clear ; banner ; menu ; break ;;
 	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;

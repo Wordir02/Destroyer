@@ -64,3 +64,25 @@ if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
 	fi
 
 }
+
+
+enablePn()
+{
+
+while true 
+	do
+
+	echo -e "${BOLDBLUE}"	
+	read  -p "Enable Pn?(y/n): " opt
+
+	echo ""
+		case $opt in
+	"y") Pn='-Pn'; break ;;
+	"n") Pn='' ; break ;; 
+	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
+
+	esac	
+
+	done
+
+}
