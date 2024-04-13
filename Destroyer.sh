@@ -32,8 +32,8 @@ echo -e "		            ${B}The ultimate penetration tester tool ${NC} "
 	echo "" 
        	echo "${B}" 
 	echo -e "[${LBLUE}0${NC}${B}]${CYAN} nmap"
-       	echo -e "${NC}${B}[${LBLUE}1${NC}${B}]${CYAN} change ip"
-	echo -e "${NC}${B}[${LBLUE}2${NC}${B}]${CYAN} mod 3"
+       	echo -e "${NC}${B}[${LBLUE}1${NC}${B}]${CYAN} change target"
+	echo -e "${NC}${B}[${LBLUE}2${NC}${B}]${CYAN} domain"
 	echo -e "${NC}${B}[${FAINTLRED}*${NC}${B}]${CYAN} exit"	
 	echo ""
 	echo ""
@@ -43,13 +43,13 @@ echo -e "		            ${B}The ultimate penetration tester tool ${NC} "
 	do
 
 	echo -e "${BOLDBLUE}"	
-	read  -p "Select your option: " opt
+	read  -p "Select an option: " opt
 
 	echo ""
 		case $opt in
 	"0") nmap ; break ;;
-	"1") insertIp ; break ;; 
-	"2") option3  ; break ;;
+	"1") changeTarget ; break ;; 
+	"2") echo $domain  ; break ;;
 	"*") echo -e "${B}${LBLUE}thank you for using our tool!";exit 0 ; break;;
 	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
 
@@ -60,81 +60,15 @@ echo -e "		            ${B}The ultimate penetration tester tool ${NC} "
 	
 }
 
-
-
-changeIp(){
-
-echo "change ip"
-
-}
-
-
-nmap(){
-
-clear 	
-
-
-echo -e "${B}${LRED}
-┌┬┐┌─┐┌─┐┌┬┐┬─┐┌─┐┬ ┬┌─┐┬─┐
- ││├┤ └─┐ │ ├┬┘│ │└┬┘├┤ ├┬┘
-─┴┘└─┘└─┘ ┴ ┴└─└─┘ ┴ └─┘┴└─ "
-
-insertPasswd
+clear
 
 
 
-echo -e "${NC}" 
-       	echo "${B}" 
-	echo -e "[${LBLUE}0${NC}${B}]${CYAN} SYN Scan"
-       	echo -e "${NC}${B}[${LBLUE}1${NC}${B}]${CYAN} ACK Scan"
-	echo -e "${NC}${B}[${LBLUE}2${NC}${B}]${CYAN} TCP Scan"
-	echo -e "${NC}${B}[${LBLUE}3${NC}${B}]${CYAN} enable Pn"
-	echo -e "${NC}${B}[${LBLUE}4${NC}${B}]${CYAN} enable silent scan"
-	echo -e "${NC}${B}[${LBLUE}5${NC}${B}]${CYAN} Export results"
-	echo -e "${NC}${B}[${FAINTLRED}*${NC}${B}]${CYAN} back"	
-	echo ""
-	echo -e "${BOLDBLUE}"
-
-while true 
-	do
-
-	echo -e "${BOLDBLUE}"	
-	read  -p "Select your option: " opt
-
-	echo ""
-		case $opt in
-	"0") SYN $ip ; clear ; nmap ; break ;;
-	"1") ACK $ip ; clear ; nmap  ; break ;; 
-	"2") TCP $ip ; clear ; nmap ; break ;;
-	"3") enablePn $ip ; clear ; nmap ; break ;;
-	"4") silent $ip ; clear ; nmap ; break ;;
-	"5") export $ip ; clear ; nmap ; break ;;
-	"*") clear ; banner ; menu ; break ;;
-	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
-
-	esac	
-
-	done
-
-}
-
-
-optione2(){
-
-echo "option 2"	
-
-}
-
-
-option3(){
-
-echo "option 3"
-
-}
-
-
-banner
+dirName
 insertIp
+insertDomain
+clear
+banner
 menu
 
 
