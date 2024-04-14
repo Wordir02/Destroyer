@@ -1,13 +1,10 @@
 #!/bin/bash
 
-
 source lib/nmap.sh
 source lib/webEnum.sh
 source lib/feroxbuster.sh
 source lib/colorcodes.sh
 source lib/utils.sh
-
-
 
 
 banner(){
@@ -30,6 +27,13 @@ echo -e "		            ${B}The ultimate penetration tester tool ${NC} "
 
  }
 
+
+miniBanner(){
+	echo -e "${B}${LRED}
+┌┬┐┌─┐┌─┐┌┬┐┬─┐┌─┐┬ ┬┌─┐┬─┐
+ ││├┤ └─┐ │ ├┬┘│ │└┬┘├┤ ├┬┘
+─┴┘└─┘└─┘ ┴ ┴└─└─┘ ┴ └─┘┴└─ "
+}
 
 
  menu(){
@@ -64,11 +68,10 @@ echo -e "		            ${B}The ultimate penetration tester tool ${NC} "
 	
 	
 }
-
-clear
-
+	
 
 
+miniBanner
 dirName
 insertIp
 insertDomain

@@ -5,18 +5,12 @@ nmap(){
 
 clear 	
 
-
-echo -e "${B}${LRED}
-┌┬┐┌─┐┌─┐┌┬┐┬─┐┌─┐┬ ┬┌─┐┬─┐
- ││├┤ └─┐ │ ├┬┘│ │└┬┘├┤ ├┬┘
-─┴┘└─┘└─┘ ┴ ┴└─└─┘ ┴ └─┘┴└─ "
+miniBanner
 
 if [[ ! -d ./output/$name/nmap ]] 
 			then
 				mkdir "./output/$name/nmap"
 			fi
-
-
 
 
 
@@ -40,13 +34,13 @@ while true
 
 	echo ""
 		case $opt in
-	"0") SYN $ip $name ; clear ; nmap ; break ;;
-	"1") ACK $ip $name ; clear ; nmap  ; break ;; 
-	"2") TCP $ip $name ; clear ; nmap ; break ;;
-	"3") enablePn $ip  ; clear ; nmap ; break ;;
-	"4") silent $ip ; clear ; nmap ; break ;;
-	"5") export $name ;sleep 5; clear ; nmap ; break ;;
-	"*") clear ; banner ; menu ; break ;;
+	"0") SYN  		;clear ; nmap ; break ;;
+	"1") ACK  		;clear ; nmap ; break ;; 
+	"2") TCP  		;clear ; nmap ; break ;;
+	"3") enablePn 	;clear ; nmap ; break ;;
+	"4") silent 	;clear ; nmap ; break ;;
+	"5") export $name 	; clear ; nmap ; break ;;
+	"*") clear 		; banner ; menu ; break ;;
 	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
 
 	esac	
@@ -70,6 +64,7 @@ SYN()
 
     xdotool type "sudo nmap -sS -sV -O $Pn $silent $ip -oX $name/nmap/$ip-SYN.xml" ; xdotool key Return
 
+
     xdotool type "$passwd" ; xdotool key Return
 
 }
@@ -77,7 +72,7 @@ SYN()
 
 ACK()
 {
-   xdotool key ctrl+shift+t;sleep 1
+    xdotool key ctrl+shift+t;sleep 1
 
 
     xdotool key alt+shift+s ; xdotool type "AckScan" ; xdotool key Return;sleep 1
@@ -86,7 +81,8 @@ ACK()
     xdotool type "cd ./output" ; xdotool key Return ; xdotool key ctrl+l;sleep 1 
 
 
-    xdotool type "sudo nmap -sA -sV -O $ip $silent -oX $name/nmap/$ip-ACK.xml" ; xdotool key Return
+    xdotool type "sudo nmap -sA -sV -O $Pn $silent $ip -oX $name/nmap/$ip-ACK.xml" ; xdotool key Return
+
 
     xdotool type "$passwd" ; xdotool key Return 
 }
@@ -103,7 +99,8 @@ TCP()
     xdotool type "cd ./output" ; xdotool key Return ; xdotool key ctrl+l;sleep 1 
 
 
-    xdotool type "sudo nmap -sT -sV -O -Pn $ip -oX $name/nmap/$ip-TCP.xml" ; xdotool key Return
+    xdotool type "sudo nmap -sT -sV -O -Pn $Pn $silent $ip -oX $name/nmap/$ip-TCP.xml" ; xdotool key Return
+
 
     xdotool type "$passwd" ; xdotool key Return
 
@@ -164,7 +161,7 @@ while true
 export()
 {
 
-    cd ./output/$name
+    cd ./output/$name/nmap
 
     for file in ./*.xml;
     do
@@ -172,7 +169,8 @@ export()
         filename="${filename%.*}"
         xsltproc "$file" -o "${filename}.html"
     done
-
+	
+	cd ../../..
 }
 
 
@@ -180,10 +178,10 @@ export()
 all()
 {
 
-SYN $ip
+SYN 
 
-ACK $ip
+ACK 
 
-TCP $ip
+TCP 
 
 }

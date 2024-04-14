@@ -1,0 +1,7 @@
+to use this tool you must be on a linux machine with the following tools installed:
+-nmap (sudo apt install nmap)
+-whatweb (sudo apt install whatweb)
+-feroxbuster (sudo apt install feroxbuster)
+-dnrecon (sudo apt install dnrecon)
+-xdotool (sudo apt install xdotool)
+

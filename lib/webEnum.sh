@@ -1,15 +1,13 @@
 #!/bin/bash
-source ./feroxbuster.sh
+
+source lib/feroxbuster.sh
 
 webenum(){
 
 clear 	
 
 
-echo -e "${B}${LRED}
-┌┬┐┌─┐┌─┐┌┬┐┬─┐┌─┐┬ ┬┌─┐┬─┐
- ││├┤ └─┐ │ ├┬┘│ │└┬┘├┤ ├┬┘
-─┴┘└─┘└─┘ ┴ ┴└─└─┘ ┴ └─┘┴└─ "
+miniBanner
 
 if [[ ! -d ./output/$name/webEnum ]] 
 			then
@@ -25,24 +23,22 @@ echo -e "${NC}"
 	echo -e "[${LBLUE}0${NC}${B}]${CYAN} Feroxbuster"
        	echo -e "${NC}${B}[${LBLUE}1${NC}${B}]${CYAN} Whatweb"
 	echo -e "${NC}${B}[${LBLUE}2${NC}${B}]${CYAN} Dnsrecon"
-	echo -e "${NC}${B}[${LBLUE}5${NC}${B}]${CYAN} Export results"
 	echo -e "${NC}${B}[${FAINTLRED}*${NC}${B}]${CYAN} back"	
 	echo ""
 	echo -e "${BOLDBLUE}"
 
 while true 
 	do
+	
 
 	echo -e "${BOLDBLUE}"	
 	read  -p "Select an option: " opt
 
 	echo ""
 		case $opt in
-	"0")  ferox ;                break ;;
-	"1")  whatWeb    ; clear   ; break ;; 
-	"2")  echo $name ; clear   ; break ;;
-	"3")  echo ciao  ; clear   ; break ;;
-	"4")  echo ciao  ; clear   ; break ;;
+	"0") ferox 		;clear	   ; break ;;
+	"1") whatWeb    ;clear     ; break ;; 
+	"2") echo $name ;clear     ; break ;;
 	"*") clear ; banner ; menu ; break ;;
 	  *) echo -e "${LRED}Invalid option. Please select a valid option.${NC} ";;
 
