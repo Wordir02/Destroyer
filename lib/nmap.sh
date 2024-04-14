@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-
 nmap(){
 
 clear 	
@@ -17,7 +16,7 @@ if [[ ! -d ./output/$name/nmap ]]
 				mkdir "./output/$name/nmap"
 			fi
 
-insertPasswd
+
 
 
 

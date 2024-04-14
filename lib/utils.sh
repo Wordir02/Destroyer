@@ -41,7 +41,7 @@ done
 
 checkDomainFormat()
 {
-	domain_regex="^http(s)?://([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$"
+	domain_regex="^https?://(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})(:[0-9]{1,5})?(/.*)?$"
 
 	if [[ $1 =~ $domain_regex ]]; then
 		echo "Domain format is correct."
@@ -52,13 +52,13 @@ checkDomainFormat()
 
 insertDomain()
 {
-
+	
 while true
 
 do
 
 	echo -e "${BOLDBLUE}"
-	read -p "Enter the domain name(if empty it is set to default ):  " domain 
+	read -p "Enter the domain name(if empty it is set to default):  " domain 
 	echo -e "${NC}"
 
 	if [ -z $domain ] 
@@ -69,6 +69,7 @@ do
 
 
 	else
+		
 		if checkDomainFormat $domain
 		then
 			break
@@ -119,6 +120,14 @@ echo -e "${BOLDBLUE}"
 if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
     	
 		return 0
+
+	elif [ -z $ip ]
+	then
+		echo -e "${BOLDLRED}ip not insert, you can insert after with change target${NC}"
+		
+		return 0
+		
+
 	else
 		echo ""	
     	echo -e "${BOLDLRED}Invalid IP address${NC}"
@@ -153,4 +162,6 @@ dirName ()
 		fi
 	done
 }
+
+
 
